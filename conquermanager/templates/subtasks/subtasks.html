@@ -1,0 +1,13 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Lista de SubTareas{% endblock %}
+{% block page_title %}SubTareas{% endblock %}
+
+{% block page_content %}
+    <h2>Lista completa de SubTareas</h2>
+    <ul>
+        {% for subtask in subtasks %}
+        <li>{{ subtask.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

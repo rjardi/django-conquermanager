@@ -1,0 +1,13 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Lista de Tareas{% endblock %}
+{% block page_title %}Tareas{% endblock %}
+
+{% block page_content %}
+    <h2>Lista completa de Tareas</h2>
+    <ul>
+        {% for task in tasks %}
+          <li>{{ task.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

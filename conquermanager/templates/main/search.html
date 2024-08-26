@@ -1,0 +1,54 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Página Busqueda{% endblock %}
+{% block page_title %}Bienvenido a nuestra página de busqueda{% endblock %}
+
+{% block page_content %}
+  <p>Este es el contenido de la página de busqueda</p>
+  <div>
+    <form action="" method="get">
+      <h2>Busca Tareas</h2>
+      <div>
+        {{search_form.as_p}}
+        <button>Buscar</button>
+      </div>
+    </form>
+  </div> 
+  
+  {% if request.GET %}  
+    <div>
+      <h3>Resultados de tareas</h3>
+      {% if tasks %}
+        <ul>
+          {% for task in tasks %}
+            <li> {{task.name}} </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+      <p>No hay resultados para la busqueda</p>
+      {% endif %}
+
+      <h3>Resultados de subtareas</h3>
+      {% if tasks %}
+        <ul>
+          {% for subtask in subtasks %}
+            <li> {{subtask.name}} </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+      <p>No hay resultados para la busqueda</p>
+      {% endif %}
+
+
+
+    </div>
+  {% endif %}
+
+
+
+{% endblock %}
+
+
+
+
+
