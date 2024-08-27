@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import environ
+
+
 
 from pathlib import Path
 
@@ -38,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "todos"    
+    'todos',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -128,9 +132,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Configuraciion de envio de correos servidor SMTP según https://docs.djangoproject.com/en/5.0/topics/email/
 
-# EMAIL_HOST 
-# EMAIL_PORT
-# EMAIL_HOST_USER 
-# EMAIL_HOST_PASSWORD
-# EMAIL_USE_TLS 
-# EMAIL_USE_SSL
+import environ
+import os
+
+# Initialize environment variables
+env = environ.Env()
+
+# Read the .env file located in the env/ directory
+env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'env/.env')
+env.read_env(env_path)
+
+# Now use the environment variables
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')  # This will raise an error if not found
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')

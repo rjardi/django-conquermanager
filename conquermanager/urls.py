@@ -18,7 +18,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import path, include
 
-from conquermanager.views import contact_view, helloworld, home_view, search_view
+from conquermanager.views import helloworld, home_view, search_view
+from core.views import contact_view
 
 # Prueba para demostrat como funcionan las path
 
