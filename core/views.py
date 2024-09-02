@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.shortcuts import render
 
-from core.forms import ContactForm, LoginForm
+from core.forms import ContactForm, LoginForm, UserRegisterForm
 from core.models import Contact
 
 from django.contrib.auth import authenticate, login, logout
@@ -12,6 +12,8 @@ from django.shortcuts import redirect
 
 
 from django.core.mail import send_mail
+
+from django.contrib.auth.models import User
 
 # Create your views here.
 def contact_view(request):
@@ -90,3 +92,39 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect(reverse('home'))
+
+def register_view(request):
+    if request.POST:
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+
+            user=User.objects.create_user(username, email, password2)
+
+            if user:
+                user.first_name=first_name
+                user.last_name=last_name
+                user.save()
+
+            context={
+                'msg':'Usuario creado correctamente'
+            }  
+            
+            return render(request, "main/register.html", context)
+        else:
+            context = {
+                'form': form,
+            }
+            return render(request, "main/register.html", context)
+
+    else:
+        form = UserRegisterForm()
+        context = {
+            'form': form
+        }
+        return render(request, "main/login.html", context)

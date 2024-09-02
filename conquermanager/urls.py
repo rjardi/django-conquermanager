@@ -19,7 +19,7 @@ from django.shortcuts import render
 from django.urls import path, include
 
 from conquermanager.views import helloworld, home_view, search_view
-from core.views import contact_view, login_view, logout_view
+from core.views import contact_view, login_view, logout_view, register_view
 
 # Prueba para demostrat como funcionan las path
 
@@ -33,5 +33,6 @@ urlpatterns = [
     # helloworld sera la función que resolverà la respuesta a la path /saludo
     path('saludo/', helloworld),
     path("login/", login_view, name="login"),
-    path("logout/", logout_view, name="logout")
+    path("logout/", logout_view, name="logout"),
+    path("register/", register_view, name="register")
 ]

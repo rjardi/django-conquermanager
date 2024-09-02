@@ -5,6 +5,7 @@
     <li><a href="{% url 'todos:subtasks_list' %}">Subtareas</a></li>
     <li><a href="{% url 'todos:users_list' %}">Usuarios</a></li>
     <li><a href="{% url 'contact' %}">Contacto</a></li>
+    <li><a href="{% url 'register' %}">Register</a></li>
     {% if request.user.is_authenticated %}
         <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
     {% endif %}
