@@ -18,4 +18,8 @@ class ContactForm(forms.Form):
             raise forms.ValidationError("El formato del email no es correcto")
         return email
 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=140, label="Nombre de usuario")
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña")
+
             

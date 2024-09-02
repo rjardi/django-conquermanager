@@ -149,3 +149,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')  # This will raise an error if not found
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'  # La vista a la que se redirige después de un login exitoso
+LOGOUT_REDIRECT_URL = '/'  # La vista a la que se redirige después de un logout

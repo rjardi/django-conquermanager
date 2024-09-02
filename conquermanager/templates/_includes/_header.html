@@ -5,4 +5,15 @@
     <li><a href="{% url 'todos:subtasks_list' %}">Subtareas</a></li>
     <li><a href="{% url 'todos:users_list' %}">Usuarios</a></li>
     <li><a href="{% url 'contact' %}">Contacto</a></li>
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+    {% endif %}
+
+    <section class="user">
+        {% if request.user.is_authenticated %}
+          <p>Estás logueado como: {{ request.user }}</p>
+        {% else %}
+          <p><a href="{% url 'login' %}">Login</a></p>
+        {% endif %}
+    </section>
 </ul>   
