@@ -1,0 +1,13 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Lista de Tareas{% endblock %}
+{% block page_title %}Tareas{% endblock %}
+
+{% block page_content %}
+    <h2>Nueva Tarea</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>Task create</button>
+    </form>
+{% endblock %}
