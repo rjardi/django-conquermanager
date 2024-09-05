@@ -19,7 +19,7 @@ from django.shortcuts import render
 from django.urls import path, include
 
 from conquermanager.views import helloworld, home_view, search_view
-from core.views import contact_view, login_view, logout_view, register_view
+from core.views import ContactFormView, Prueba, PruebaTemplateView, contact_view, login_view, logout_view, register_view
 
 # Prueba para demostrat como funcionan las path
 
@@ -28,11 +28,14 @@ urlpatterns = [
     path('', home_view, name="home"),
     path('', include("todos.urls", namespace="todos")),
     path('search/', search_view, name="search"),
+    path('contact/ccbv/',ContactFormView.as_view(), name="contact_ccbv"),
     path('contact/',contact_view, name="contact"),
     path('admin/', admin.site.urls),
     # helloworld sera la función que resolverà la respuesta a la path /saludo
     path('saludo/', helloworld),
     path("login/", login_view, name="login"),
     path("logout/", logout_view, name="logout"),
-    path("register/", register_view, name="register")
+    path("register/", register_view, name="register"),
+    path("prueba/", Prueba.as_view(), name="prueba"),
+    path("pruebatemplateview/", PruebaTemplateView.as_view(), name="prueba_template_view"),
 ]

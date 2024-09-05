@@ -11,7 +11,7 @@
     {% else %}
         <form method="post">
             {% csrf_token %}
-            {{ contact_form.as_p }}
+            {{ form.as_p }}
             <button>Enviar</button>
         </form>
     {% endif %}

@@ -1,6 +1,9 @@
 
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import View
+from django.views.generic import FormView
 
 from core.forms import ContactForm, LoginForm, UserRegisterForm
 from core.models import Contact
@@ -14,6 +17,7 @@ from django.shortcuts import redirect
 from django.core.mail import send_mail
 
 from django.contrib.auth.models import User
+from django.views.generic import TemplateView
 
 # Create your views here.
 def contact_view(request):
@@ -57,6 +61,35 @@ def contact_view(request):
     }
 
     return render(request,'main/contact.html', context)
+
+class ContactFormView(FormView):
+    template_name = "main/contact.html"
+    form_class = ContactForm
+    success_url = "/"
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        name=form.cleaned_data["name"]
+        email=form.cleaned_data["email"]
+        message=form.cleaned_data["message"]
+
+        message_content=f"Se ha enviado correctamente de {name} con el correo {email} el mensaje: {message}"
+        print(message_content)
+
+        Contact.objects.create(
+            name=name,
+            email=email,
+            message=message
+        )
+
+        subject = 'Test Email'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['martagilserra@gmail.com']
+
+        success=send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+        
+        return super().form_valid(form)
 
 
 def login_view(request):
@@ -128,3 +161,19 @@ def register_view(request):
             'form': form
         }
         return render(request, "main/login.html", context)
+    
+
+class Prueba(View):
+    def get(self,request,*args,**kwargs):
+        return HttpResponse("Hello World")
+    
+class PruebaTemplateView(TemplateView):
+    template_name="PruebaTemplateView.html"
+
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context['titulo']='Este es el titulo'
+        return context
+    
+class PruebaTemplateView2(PruebaTemplateView):
+    template_name='PruebaTemplateView.html'

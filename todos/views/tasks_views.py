@@ -1,9 +1,26 @@
+from django.views.generic import ListView
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from todos.forms.task_form import TaskCreate, TaskModelFormCreate
 from todos.models import Task
+from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
+
+class TaskList(ListView):
+    model=Task
+    template_name='tasks/tasks_ccbv.html'
+    context_object_name='tasks'
+
+class TaskDetail(DetailView):
+    model=Task
+    template_name='tasks/task_detail_ccbv.html'
+    context_object_name='task'
+
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['titulo']='Este es mi titulo'
+        return context
 
 # Create your views here.
 @login_required
@@ -12,7 +29,7 @@ def tasks_view(request):
 
     context= {
         "tasks": tasks,
-        "titulo": "Hola estamos proando el contexto"
+        "titulo": "Hola estamos probando el contexto"
     }
 
     return render(request, "tasks/tasks.html", context)

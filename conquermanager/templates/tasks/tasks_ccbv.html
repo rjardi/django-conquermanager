@@ -1,0 +1,16 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Lista de Tareas{% endblock %}
+{% block page_title %}Tareas{% endblock %}
+
+{% block page_content %}
+    <h2>Lista completa de Tareas</h2>
+    <ul>
+        {% for task in tasks %}
+          <li><a href="{% url "todos:task_detail_ccbv" task.pk %}" class="">{{ task.name }}</a></li>
+        {% endfor %}
+        <li><a href="{% url "todos:task_create" %}" class="">New Task</a></li>
+    </ul>
+
+
+{% endblock %}
