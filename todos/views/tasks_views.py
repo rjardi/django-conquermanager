@@ -11,12 +11,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class TaskList(ListView):
     model=Task
-    template_name='tasks/tasks_ccbv.html'
+    template_name='tasks/tasks_list.html'
     context_object_name='tasks'
 
 class TaskDetail(DetailView):
     model=Task
-    template_name='tasks/task_detail_ccbv.html'
+    template_name='tasks/task_detail.html'
     context_object_name='task'
 
     def get_context_data(self, **kwargs):
@@ -32,8 +32,8 @@ class TaskCreateView(CreateView):
         'end_date',
         'description'
     ]    
-    template_name='tasks/task_create_ccbv.html'
-    success_url=reverse_lazy('todos:tasks_list')
+    template_name='tasks/task_create.html'
+    success_url=reverse_lazy('task:list')
 
 class TaskUpdateView(UpdateView):
     model = Task
@@ -43,15 +43,13 @@ class TaskUpdateView(UpdateView):
         'end_date',
         'description'
     ]    
-    template_name='tasks/task_update_ccbv.html'
-    success_url=reverse_lazy('todos:tasks_list')
+    template_name='tasks/task_update.html'
+    success_url=reverse_lazy('task:list')
 
 class TaskDeleteView(DeleteView):
     model = Task
-    success_url = reverse_lazy("todos:tasks_list")
-    template_name='tasks/task_delete_ccbv.html'
-
-
+    success_url = reverse_lazy("task:list")
+    template_name='tasks/task_delete.html'
 
 # Create your views here.
 @login_required

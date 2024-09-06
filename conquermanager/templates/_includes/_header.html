@@ -1,9 +1,9 @@
 <ul>
     <li><a href="{% url 'home' %}">Inicio</a></li>
     <li><a href="{% url 'search' %}">Buscar</a></li>
-    <li><a href="{% url 'todos:tasks_list' %}">Tareas</a></li>
-    <li><a href="{% url 'todos:subtasks_list' %}">Subtareas</a></li>
-    <li><a href="{% url 'todos:users_list' %}">Usuarios</a></li>
+    <li><a href="{% url 'task:list' %}">Tareas</a></li>
+    <li><a href="{% url 'subtask:list' %}">Subtareas</a></li>
+    {% comment %} <li><a href="{% url 'user:list' %}">Usuarios</a></li> {% endcomment %}
     <li><a href="{% url 'contact' %}">Contacto</a></li>
     <li><a href="{% url 'register' %}">Register</a></li>
     {% if request.user.is_authenticated %}

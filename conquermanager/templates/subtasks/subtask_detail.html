@@ -1,0 +1,12 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Detalle de SubTarea{% endblock %}
+{% block page_title %}Detalle de SubTarea{% endblock %}
+
+{% block page_content %}
+    <h1>{{titulo}}</h1>
+    <h2>Detalle SubTarea: {{subtask.name}}</h2>
+    <p class="">{{subtask.description}}</p>
+    <p><a href="{% url "subtask:list" %}" class="">Volver a la lista de subtareas</a></p>
+    
+{% endblock %}

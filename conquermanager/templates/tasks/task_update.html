@@ -1,0 +1,17 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Detalle de Tarea{% endblock %}
+{% block page_title %}Detalle de Tarea{% endblock %}
+
+{% block page_content %}
+    
+    <h2>Editar Tarea</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Save">
+
+        <p><a href="{% url "task:detail" object.pk %}" class="">Cancelar</a></p>
+    </form>
+    
+{% endblock %}

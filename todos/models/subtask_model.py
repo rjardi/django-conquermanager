@@ -5,9 +5,9 @@ from .task_model import Task
 
 class Subtask(models.Model):
     name=models.CharField(max_length=150)
-    start_date=models.DateTimeField()
-    end_date=models.DateTimeField()
-    description=models.CharField(max_length=1000)
+    start_date=models.DateTimeField(null=True, blank=True)
+    end_date=models.DateTimeField(null=True, blank=True)
+    description=models.CharField(max_length=1000, null=True, blank=True)
     assigned_to=models.ManyToManyField(User)
     parent_task=models.ForeignKey(
         Task,

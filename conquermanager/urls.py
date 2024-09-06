@@ -26,7 +26,8 @@ from core.views import ContactFormView, Prueba, PruebaTemplateView, contact_view
 
 urlpatterns = [
     path('', home_view, name="home"),
-    path('', include("todos.urls", namespace="todos")),
+    path('task/', include("todos.urls.task_urls", namespace="task")),
+    path('subtask/', include("todos.urls.subtask_urls", namespace="subtask")),
     path('search/', search_view, name="search"),
     path('contact/ccbv/',ContactFormView.as_view(), name="contact_ccbv"),
     path('contact/',contact_view, name="contact"),

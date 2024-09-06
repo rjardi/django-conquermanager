@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Lista de SubTareas{% endblock %}
+{% block page_title %}SubTareas{% endblock %}
+
+{% block page_content %}
+    <h2>Eliminar SubTarea</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object.name }}"?</p>
+        {{ form.as_p }}
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock %}
