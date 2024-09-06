@@ -35,6 +35,10 @@ class TaskCreateView(CreateView):
     template_name='tasks/task_create.html'
     success_url=reverse_lazy('task:list')
 
+    def form_valid(self,form):
+        form.instance.created_by=self.request.user
+        return super().form_valid(form)
+
 class TaskUpdateView(UpdateView):
     model = Task
     fields = [

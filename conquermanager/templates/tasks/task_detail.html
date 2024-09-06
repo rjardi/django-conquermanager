@@ -9,7 +9,9 @@
     <p class="">{{task.description}}</p>
     <p>
         <a href="{% url "task:update" task.pk %}" class="">Editar</a>
-        <a href="{% url "task:delete" task.pk %}" class="">Eliminar</a>
+        {% if task.created_by == request.user %}
+            <a href="{% url "task:delete" task.pk %}" class="">Eliminar</a>
+        {% endif %}
     </p>
     <p><a href="{% url "task:list" %}" class="">Volver a la lista de tareas</a></p>
     
