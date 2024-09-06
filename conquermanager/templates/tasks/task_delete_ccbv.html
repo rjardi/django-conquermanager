@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %}
+
+{% block head_title %}Lista de Tareas{% endblock %}
+{% block page_title %}Tareas{% endblock %}
+
+{% block page_content %}
+    <h2>Eliminar Tarea</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object.name }}"?</p>
+        {{ form.as_p }}
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock %}

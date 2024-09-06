@@ -1,11 +1,13 @@
 from django.views.generic import ListView
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from todos.forms.task_form import TaskCreate, TaskModelFormCreate
 from todos.models import Task
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class TaskList(ListView):
     model=Task
@@ -21,6 +23,35 @@ class TaskDetail(DetailView):
         context=super().get_context_data(**kwargs)
         context['titulo']='Este es mi titulo'
         return context
+    
+class TaskCreateView(CreateView):
+    model = Task
+    fields = [
+        "name",
+        'start_date',
+        'end_date',
+        'description'
+    ]    
+    template_name='tasks/task_create_ccbv.html'
+    success_url=reverse_lazy('todos:tasks_list')
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    fields = [
+        "name",
+        'start_date',
+        'end_date',
+        'description'
+    ]    
+    template_name='tasks/task_update_ccbv.html'
+    success_url=reverse_lazy('todos:tasks_list')
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    success_url = reverse_lazy("todos:tasks_list")
+    template_name='tasks/task_delete_ccbv.html'
+
+
 
 # Create your views here.
 @login_required

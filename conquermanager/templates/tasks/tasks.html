@@ -9,7 +9,7 @@
         {% for task in tasks %}
           <li><a href="{% url "todos:task_detail" task.pk %}" class="">{{ task.name }}</a></li>
         {% endfor %}
-        <li><a href="{% url "todos:task_create" %}" class="">New Task</a></li>
+        <li><a href="{% url "todos:task_create_ccbv" %}" class="">New Task</a></li>
     </ul>
 
 
