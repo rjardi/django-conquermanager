@@ -2,12 +2,15 @@ from django.views.generic import ListView
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 
+from todos.decorators import user_can_delete_task
 from todos.forms.task_form import TaskCreate, TaskModelFormCreate
 from todos.models import Task
 from django.views.generic import DetailView
-from django.contrib.auth.decorators import login_required
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 class TaskList(ListView):
     model=Task
@@ -24,6 +27,7 @@ class TaskDetail(DetailView):
         context['titulo']='Este es mi titulo'
         return context
     
+@method_decorator(login_required, name='dispatch')    
 class TaskCreateView(CreateView):
     model = Task
     fields = [
@@ -38,7 +42,8 @@ class TaskCreateView(CreateView):
     def form_valid(self,form):
         form.instance.created_by=self.request.user
         return super().form_valid(form)
-
+    
+@method_decorator(login_required, name='dispatch')
 class TaskUpdateView(UpdateView):
     model = Task
     fields = [
@@ -50,6 +55,7 @@ class TaskUpdateView(UpdateView):
     template_name='tasks/task_update.html'
     success_url=reverse_lazy('task:list')
 
+@method_decorator(user_can_delete_task, name='dispatch')
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("task:list")
