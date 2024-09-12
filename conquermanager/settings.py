@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'todos',
     'core'
 ]
@@ -53,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'todos.custom_middleware.TiempoDeProcesamientoMiddleware'
 ]
 
 ROOT_URLCONF = 'conquermanager.urls'
@@ -153,3 +156,9 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'  # La vista a la que se redirige después de un login exitoso
 LOGOUT_REDIRECT_URL = '/'  # La vista a la que se redirige después de un logout
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]

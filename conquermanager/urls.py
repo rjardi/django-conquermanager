@@ -20,6 +20,7 @@ from django.urls import path, include
 
 from conquermanager.views import helloworld, home_view, search_view
 from core.views import ContactFormView, Prueba, PruebaTemplateView, contact_view, login_view, logout_view, register_view
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 # Prueba para demostrat como funcionan las path
 
@@ -39,4 +40,4 @@ urlpatterns = [
     path("register/", register_view, name="register"),
     path("prueba/", Prueba.as_view(), name="prueba"),
     path("pruebatemplateview/", PruebaTemplateView.as_view(), name="prueba_template_view"),
-]
+] + debug_toolbar_urls()
