@@ -71,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'conquermanager.context_processor.get_current_year_context_processor',
+                'conquermanager.context_processor.get_statistics_todos'
             ],
         },
     },

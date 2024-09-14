@@ -16,6 +16,6 @@ class TiempoDeProcesamientoMiddleware:
 
         # Añadir el tiempo de procesamiento a la respuesta como una cabecera HTTP
         response['X-Tiempo-De-Procesamiento'] = str(tiempo_total)
-        print(tiempo_total)
+        print('Tiempo de procesamiento:', tiempo_total)
 
         return response
