@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block head_title %}Título base{% endblock %}</title>
+  <style>
+    {% if color == 'rojo' %}
+      h1{
+        color:red;
+      }
+    {% endif %}
+  </style>
 </head>
 <body>
   <h1>{% block page_title %}Título base{% endblock %}</h1>
