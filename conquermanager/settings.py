@@ -9,10 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import environ
-
-
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -71,6 +67,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'conquermanager.context_processor.get_current_year_context_processor',
+                'conquermanager.context_processor.get_statistics_todos',
+                'conquermanager.context_processor.get_clave',
             ],
         },
     },
@@ -135,15 +134,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Configuraciion de envio de correos servidor SMTP según https://docs.djangoproject.com/en/5.0/topics/email/
 
-import environ
+#Obtener variables de entorno mediante libreria os de python 
 import os
 
-# Initialize environment variables
-env = environ.Env()
+# CLAVE=os.getenv('CLAVE', 'clave por defecto')
+# print(CLAVE)
+# COLOR='rojo'
 
-# Read the .env file located in the env/ directory
-env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'env/.env')
-env.read_env(env_path)
+#Obtener variables de entorno mediante django-environ
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+#Obtener variables de entorno mediante django-environ
+CLAVE=env('CLAVE')
+COLOR=env('COLOR')
 
 # Now use the environment variables
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -162,3 +173,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+
+

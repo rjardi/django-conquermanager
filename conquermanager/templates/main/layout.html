@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block head_title %}Título base{% endblock %}</title>
   <style>
+<<<<<<< HEAD
     .message{
       background-color: #ccc;
       color: black;
@@ -19,6 +20,13 @@
       background-color: red;
       color: white;
     }
+=======
+    {% if color == 'rojo' %}
+      h1{
+        color:red;
+      }
+    {% endif %}
+>>>>>>> 2004d173fff80497625fd894abe5ada41d9fca7a
   </style>
 </head>
 <body>
