@@ -21,6 +21,8 @@ from django.views.generic import TemplateView
 
 from django.contrib import messages
 
+from django.utils.translation import gettext as _
+
 # Create your views here.
 def contact_view(request):
 
@@ -54,7 +56,7 @@ def contact_view(request):
                 'success': success
             }
 
-            messages.info(request,'Este es un mensaje de Información')
+            messages.info(request,_('Este es un mensaje de Información'))
             return render(request,'main/contact.html', context)
 
     

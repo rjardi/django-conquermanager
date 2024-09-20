@@ -7,12 +7,14 @@ from todos.models import Task, Subtask
 from django.core.mail import send_mail
 from django.contrib import messages
 
+from django.utils.translation import gettext as _
+
 
 def helloworld(request):
     return HttpResponse("Holaaa") 
 
 def home_view(request):
-    messages.info(request,'Este es un mensaje de Información')
+    messages.info(request,_('Este es un mensaje de Información'))
     return render(request,'main/home.html')
 
 def search_view(request):
