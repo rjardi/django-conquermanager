@@ -19,6 +19,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 
+from django.contrib import messages
+
 # Create your views here.
 def contact_view(request):
 
@@ -48,16 +50,17 @@ def contact_view(request):
             success=send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
             context={
-                "contact_form": contact_form,
+                "form": contact_form,
                 'success': success
             }
 
+            messages.info(request,'Este es un mensaje de Información')
             return render(request,'main/contact.html', context)
 
     
     contact_form=ContactForm()
     context={
-        "contact_form": contact_form
+        "form": contact_form
     }
 
     return render(request,'main/contact.html', context)

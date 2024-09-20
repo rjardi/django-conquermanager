@@ -9,13 +9,23 @@
     {% if request.user.is_authenticated %}
         <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
     {% endif %}
+  
 
-    <section class="user">
-        {% if request.user.is_authenticated %}
-          <p>Estás logueado como: {{ request.user }}</p>
-        {% else %}
-          <p><a href="{% url 'login' %}">Login</a></p>
-        {% endif %}
-    </section>
-    <li>Tiempo de procesamiento: {{request.META['X-Tiempo-De-Procesamiento']}}</li>
-</ul>   
+  <section class="user">
+    {% if request.user.is_authenticated %}
+      <p>Estás logueado como: {{ request.user }}</p>
+    {% else %}
+      <p><a href="{% url 'login' %}">Login</a></p>
+    {% endif %}
+  </section>
+</ul> 
+
+{% if messages %}
+  <section class="messages">
+    <ul>
+      {% for message in messages %}
+        <li class="message {{message.tags }}">{{message}}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}

@@ -5,12 +5,14 @@ from core.models import Contact
 from todos.forms.search_form import SearchForm
 from todos.models import Task, Subtask
 from django.core.mail import send_mail
+from django.contrib import messages
 
 
 def helloworld(request):
     return HttpResponse("Holaaa") 
 
 def home_view(request):
+    messages.info(request,'Este es un mensaje de Información')
     return render(request,'main/home.html')
 
 def search_view(request):
