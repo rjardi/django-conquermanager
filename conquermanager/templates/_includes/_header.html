@@ -20,6 +20,16 @@
   </section>
 </ul> 
 
+<form action="{% url "set_language" %}" method="post">
+  {% csrf_token %}
+  <select name="language">
+    <option value="en"{% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+    <option value="es"{% if LANGUAGE_CODE == 'es' %}selected{% endif %}>Español</option>
+  </select>
+  <input type="hidden" name="next" value="{{ request.path }}">
+  <button type="submit">Cambiar idioma</button>
+</form>
+
 {% if messages %}
   <section class="messages">
     <ul>

@@ -16,16 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.urls import path, include
+from django.urls import path, include, re_path
 
-from conquermanager.views import helloworld, home_view, search_view
+from conquermanager.views import SetLanguageView, helloworld, home_view, search_view
 from core.views import ContactFormView, Prueba, PruebaTemplateView, contact_view, login_view, logout_view, register_view
 from debug_toolbar.toolbar import debug_toolbar_urls
+from django.conf.urls.i18n import i18n_patterns
 
 # Prueba para demostrat como funcionan las path
 
 
 urlpatterns = [
+    re_path(r'^rosetta/', include('rosetta.urls')),
+    path('set-language/', SetLanguageView.as_view(), name='set_language'),
     path('', home_view, name="home"),
     path('task/', include("todos.urls.task_urls", namespace="task")),
     path('subtask/', include("todos.urls.subtask_urls", namespace="subtask")),
@@ -41,3 +44,7 @@ urlpatterns = [
     path("prueba/", Prueba.as_view(), name="prueba"),
     path("pruebatemplateview/", PruebaTemplateView.as_view(), name="prueba_template_view"),
 ] + debug_toolbar_urls()
+
+urlpatterns += i18n_patterns(
+    path("buscar/", search_view, name="search"),
+)

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'todos',
-    'core'
+    'core',
+    'rosetta'
 ]
 
 MIDDLEWARE = [
@@ -182,6 +183,9 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+LANGUAGE_COOKIE_NAME = 'django_language'  # Este es el valor por defecto, lo puedes personalizar si lo necesitas
+
 
 
 
