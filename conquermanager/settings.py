@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'modeltranslation', 
     'todos',
     'core',
-    'rosetta'
+    'rosetta',
+    
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,13 @@ LANGUAGES =[
 ]
 
 LANGUAGE_COOKIE_NAME = 'django_language'  # Este es el valor por defecto, lo puedes personalizar si lo necesitas
+
+#Constantes para la aplicación django-translation
+MODELTRANSLATION_DEFAULT_LANGUAGES="es"
+MODELTRANSLATION_LANGUAGES=("es", "en")
+MODELTRANSALTION_FALLBACK_LANGUAGES= ("es", )
+MODELTRANSLATION_PREPOPULATE_LANGUAGE= "es"
+
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
