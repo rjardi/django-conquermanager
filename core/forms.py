@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth.password_validation import validate_password
+from django.utils.translation import gettext_lazy as _
 
 class ContactForm(forms.Form):
     
-    name=forms.CharField(max_length=100, label="Nombre")
-    email=forms.CharField(label="Email")
-    message=forms.CharField(max_length=500, label="Mensaje", widget=forms.Textarea)
+    name=forms.CharField(max_length=100, label=_("Nombre"))
+    email=forms.CharField(label=_("Email"))
+    message=forms.CharField(max_length=500, label=_("Mensaje"), widget=forms.Textarea)
 
     def clean_name(self):
         name=self.cleaned_data.get('name')

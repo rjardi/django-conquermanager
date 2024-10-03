@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', #Asegureta de que esta antes de CSRF y después de SessionMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',  #Añadido para disponer de LANGUAGES de las plantillas
                 'conquermanager.context_processor.get_current_year_context_processor',
                 'conquermanager.context_processor.get_statistics_todos',
                 'conquermanager.context_processor.get_clave',
@@ -112,20 +114,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-ES'
+TIME_ZONE = 'Europe/Madrid'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+PREFIX_DEFAULT_LANGUAGE = True
+
+LANGUAGE_CODE = 'es' #Idioma predeterminado
 
 LANGUAGES =[
     ('en', 'English'),
     ('es', 'Español')
 ]
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
+LANGUAGE_COOKIE_NAME = 'django_language'  # Este es el valor por defecto, lo puedes personalizar si lo necesitas
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
@@ -184,7 +186,7 @@ INTERNAL_IPS = [
     # ...
 ]
 
-LANGUAGE_COOKIE_NAME = 'django_language'  # Este es el valor por defecto, lo puedes personalizar si lo necesitas
+
 
 
 

@@ -1,18 +1,19 @@
 {% extends "main/layout.html" %}
+{% load i18n %}
 
 {% block head_title %}Contact{% endblock %}
-{% block page_title %}Welcome to Contact Page{% endblock %}
+{% block page_title %}{% trans "Contacta con nostros" %}{% endblock %}
 
 {% block page_content %}
     {% if success %}
         <p>
-            Se ha enviado el correo correctamente
+            {% trans "Se ha enviado el correo correctamente" %}
         </p>
     {% else %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button>Enviar</button>
+            <button>{% trans "Enviar" %}</button>
         </form>
     {% endif %}
 

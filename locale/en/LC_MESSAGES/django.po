@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-25 22:21+0200\n"
-"PO-Revision-Date: 2024-09-25 20:27+0000\n"
+"POT-Creation-Date: 2024-10-03 16:30+0200\n"
+"PO-Revision-Date: 2024-10-03 16:31+0200\n"
 "Last-Translator: Ramon Jardí <risenjardi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,6 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: conquermanager/templates/_includes/_header.html:36
+msgid "Cambiar"
+msgstr "Change"
+
+#: conquermanager/templates/main/contact.html:5
+msgid "Contacta con nostros"
+msgstr "Contact"
+
+#: conquermanager/templates/main/contact.html:10
+msgid "Se ha enviado el correo correctamente"
+msgstr "Mail send correctly"
+
+#: conquermanager/templates/main/contact.html:16
+msgid "Enviar"
+msgstr "Send"
 
 #: conquermanager/templates/main/home.html:5
 msgid "Página Home"
@@ -34,6 +50,18 @@ msgstr "This is the main content"
 #: conquermanager/views.py:18 core/views.py:59
 msgid "Este es un mensaje de Información"
 msgstr "Information message"
+
+#: core/forms.py:7
+msgid "Nombre"
+msgstr "Name"
+
+#: core/forms.py:8
+msgid "Email"
+msgstr "Email"
+
+#: core/forms.py:9
+msgid "Mensaje"
+msgstr "Message"
 
 #: env/lib/python3.10/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"

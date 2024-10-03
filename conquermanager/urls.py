@@ -28,7 +28,8 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     re_path(r'^rosetta/', include('rosetta.urls')),
-    path('set-language/', SetLanguageView.as_view(), name='set_language'),
+    # path('set-language/', SetLanguageView.as_view(), name='set_language'),
+    path('i18n/', include('django.conf.urls.i18n')),  #Incluir la vista 'set_language' que viene por defecto en i18n de django
     path('', home_view, name="home"),
     path('task/', include("todos.urls.task_urls", namespace="task")),
     path('subtask/', include("todos.urls.subtask_urls", namespace="subtask")),
