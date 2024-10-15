@@ -9,6 +9,6 @@ class Task(models.Model):
     description=models.CharField(null=True, blank=True, max_length=1000)
     # assigned_to=models.ManyToManyField(User)
     created_by=models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-
+    done=models.BooleanField("Tarea realizada",default=False)
     def __str__(self):
         return f"{self.name} {self.start_date}"
