@@ -30,12 +30,13 @@ class TaskDetail(DetailView):
 @method_decorator(login_required, name='dispatch')    
 class TaskCreateView(CreateView):
     model = Task
-    fields = [
-        "name",
-        'start_date',
-        'end_date',
-        'description'
-    ]    
+    # fields = [
+    #     "name",
+    #     'start_date',
+    #     'end_date',
+    #     'description'
+    # ]
+    form_class=TaskModelFormCreate    
     template_name='tasks/task_create.html'
     success_url=reverse_lazy('task:list')
 

@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'modeltranslation', 
+
+    "crispy_forms",
+    "crispy_bootstrap5",
+
     'todos',
     'core',
     'rosetta',
@@ -195,6 +199,8 @@ INTERNAL_IPS = [
     # ...
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 
 

@@ -20,4 +20,4 @@ class TaskCreate(forms.Form):
 class TaskModelFormCreate(forms.ModelForm):
         class Meta:
              model=Task
-             fields=['name','start_date','end_date','description']
+             fields=['name','start_date','end_date','description','level','done']

@@ -1,5 +1,7 @@
 {% extends "main/layout.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block head_title %}Lista de Tareas{% endblock %}
 {% block page_title %}Tareas{% endblock %}
 
@@ -7,7 +9,18 @@
     <h2>Nueva Tarea</h2>
     <form action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Save">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                {{ form.name|as_crispy_field }}
+                {{ form.start_date|as_crispy_field }}
+                {{ form.end_date|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.description|as_crispy_field }}
+                {{ form.level|as_crispy_field }}
+                {{ form.done|as_crispy_field }}  
+            </div>
+        </div>
+        <input type="submit" value="Save" class="btn btn-primary">
     </form>
 {% endblock %}
